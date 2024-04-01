@@ -54,21 +54,30 @@ export default class App extends Component {
                 fontSize: 24,
               }}
             >
-              {currentQuote.content}
+              &quot;{currentQuote.content}&quot;
             </p>
             <div
               style={{
                 fontWeight: 700,
                 textAlign: "left",
                 marginBottom: 30,
-                
               }}
             >
               {currentQuote.author}
             </div>
           </div>
         )}
-        <button onClick={this.fetchRandomQuote} style={{color: "white", fontSize: 24, backgroundColor: "orange", padding: 5}}>New Quote</button>
+        <button
+          onClick={this.fetchRandomQuote}
+          style={{
+            color: "white",
+            fontSize: 24,
+            backgroundColor: "orange",
+            padding: 5,
+          }}
+        >
+          New Quote
+        </button>
       </div>
     );
   }
