@@ -1,0 +1,41 @@
+.Container {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.Title {
+    background-color: #333333;
+    color: white;
+    padding: 50px;
+    text-align: center
+}
+
+.Content  {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding-top: 20px;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    font-size: 24px,
+}
+
+.Author {
+    font-weight: 700;
+    text-align: left;
+    margin-bottom: 30px
+}
+
+.BtnContainer {
+     text-align: center;
+}
+
+.Btn {
+    color: white;
+    font-size: 24px;
+    background-color: orange;
+    padding: 5px;
+    
+}
