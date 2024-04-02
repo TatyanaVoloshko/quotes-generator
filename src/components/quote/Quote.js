@@ -1,60 +1,58 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Quote.css'
 import LoadingBar from '../loadingBar/LoadingBar';
 import ErrorWrapper from '../../pages/ErrorWrapper';
 import { getQuotes } from '../../api/quotableApi';
 
-export default class Quote extends Component {
-  state = {
-    quotes: [],
-    currentQuoteIndex: 0,
-    isLoading: true,
-    isError: false,
-  };
+export default function Quote() {
 
-  async componentDidMount() {
-    await this.fetchRandomQuote();
-  }
+  const [quotes, setQuotes] = useState([]);
+  const [currentQuoteIndex] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
+ 
+ const fetchRandomQuote = async () => {
+   try {
+     const loadedQuotes = await getQuotes();
+     setQuotes(loadedQuotes);
+     setIsLoading(false);
+   } catch (error) {
+     setIsError(true);
+     setIsLoading(false);
+     console.error(error);
+   }
+ };
 
-  fetchRandomQuote = async () => {
-    try {
-      const quotes = await getQuotes()
-      this.setState({quotes})
-    } catch (error) {
-      this.setState({isError: true})
-      console.error(error);
-    } finally {
-      this.setState({isLoading: false})
-    }
-    };
-    
-  render() {
-    const { quotes, currentQuoteIndex, isLoading, isError } = this.state;
-    const currentQuote = quotes[currentQuoteIndex];
+  useEffect(() => {
+   fetchRandomQuote()
+  }, [])
 
-    if (isLoading) {
+  const currentQuote = quotes[currentQuoteIndex]
+  if (isLoading) {
       return <LoadingBar />
     }
 
-    return (
-      <ErrorWrapper isError={isError}>
-      
-        <div className="Container">
-          <h1 className="Title">Quote Generator</h1>
-          {currentQuote && (
-            <div className="Content">
-              <p>&quot;{currentQuote.content}&quot;</p>
-              <div className="Author">{currentQuote.author}</div>
-            </div>
-          )}
-          <div className="BtnContainer">
-            <button onClick={this.fetchRandomQuote} className="Btn">
-              New Quote
-            </button>
+  return (
+    <ErrorWrapper isError={isError}>
+      <div className="Container">
+        <h1 className="Title">Quote Generator</h1>
+        {currentQuote && (
+          <div className="Content">
+            <p>&quot;{currentQuote.content}&quot;</p>
+            <div className="Author">{currentQuote.author}</div>
           </div>
+        )}
+        <div className="BtnContainer">
+          <button onClick={fetchRandomQuote} className="Btn">
+            New Quote
+          </button>
         </div>
-      </ErrorWrapper>
-    )
-   
-  }
-}
+      </div>
+    </ErrorWrapper>
+  ); }
+
+ 
+
+
+
+ 

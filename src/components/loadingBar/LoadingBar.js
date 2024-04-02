@@ -1,13 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { ColorRing } from "react-loader-spinner";
 
-export default class LoadingBar extends Component {
-
-
-    render() {
-      
-    return (
-      <ColorRing
+export default function LoadingBar() {
+  return (
+     <ColorRing
         visible={true}
         height="80"
         width="80"
@@ -16,6 +12,6 @@ export default class LoadingBar extends Component {
         wrapperClass="color-ring-wrapper"
         colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
       />
-    );
-  }
+  )
 }
+

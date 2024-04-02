@@ -1,16 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 import Quote from "./components/quote/Quote";
 
-export default class App extends Component {
-  
 
-  render() {
-   
-
-    return (
-      <>
+export default function App() {
+  return (
+    <>
         <Quote />
       </>
-    )
-  }
+  )
 }
+
+

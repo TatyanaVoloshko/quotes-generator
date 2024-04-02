@@ -1,16 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
 import "./ErrorWrapper.css"
 
-export default class ErrorWrapper extends Component {
-    render() {
-        const { isError, children } = this.props
-        
-        if (isError) {
+export default function ErrorWrapper({ isError, children }) {
+
+      if (isError) {
         return <div className='Error'>Oooops! Something went wrong!</div>;
         }
 
         return <>{ children }</>
-
-    
-  }
 }
+
+
